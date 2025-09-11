@@ -1,0 +1,6 @@
+package com.klef.springboot.service;
+
+public interface StudentService 
+{
+
+}

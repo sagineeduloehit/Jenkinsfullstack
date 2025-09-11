@@ -1,0 +1,44 @@
+package com.klef.springboot.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.klef.springboot.model.Patient;
+import com.klef.springboot.repository.PatientRepository;
+
+@Service
+public class PatientServiceImpl implements PatientService
+{
+	@Autowired
+	private PatientRepository patientrepository;
+
+	@Override
+	public Patient addPatient(Patient patient) {
+		return patientrepository.save(patient);
+	}
+
+	@Override
+	public List<Patient> getAllPatients() {
+		 return patientrepository.findAll();
+	}
+
+	@Override
+	public Patient getPatientById(int id) {
+		 Optional<Patient> opt = patientrepository.findById(id);
+	        return opt.orElse(null);
+	}
+
+	@Override
+	public Patient updatePatient(Patient patient) {
+		 return patientrepository.save(patient);
+	}
+
+	@Override
+	public void deletePatientById(int id) {
+		patientrepository.deleteById(id);
+	}
+	
+}

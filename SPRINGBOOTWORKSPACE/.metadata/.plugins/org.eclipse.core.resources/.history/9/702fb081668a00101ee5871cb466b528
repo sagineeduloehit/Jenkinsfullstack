@@ -1,0 +1,80 @@
+package com.klef.springboot.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.klef.springboot.model.Patient;
+import com.klef.springboot.service.PatientService;
+
+@RestController
+@CrossOrigin(origins = "*")
+public class PatientController 
+{
+	@Autowired
+	private PatientService patientservice;
+	
+	 @GetMapping("/")
+	    public String home() 
+	    {
+	        return "Jenkins Demo";
+	    }
+	    
+
+	    @PostMapping("/add")
+	    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+	        Patient savedPatient = patientservice.addPatient(patient);
+	        return new ResponseEntity<>(savedPatient, HttpStatus.CREATED);
+	    }
+
+	    @GetMapping("/all")
+	    public ResponseEntity<List<Patient>> getAllPatients() {
+	        List<Patient> patients = patientservice.getAllPatients();
+	        return new ResponseEntity<>(patients, HttpStatus.OK);
+	    }
+
+	    @GetMapping("/get/{id}")
+	    public ResponseEntity<?> getPatientById(@PathVariable int id) {
+	        Patient patient = patientservice.getPatientById(id);
+	        
+	        if (patient != null) {
+	            return new ResponseEntity<>(patient, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>("Patient" + id + " not found.", HttpStatus.NOT_FOUND);
+	        }
+	    }
+
+	    @PutMapping("/update")
+	    public ResponseEntity<?> updatepatient(@RequestBody Patient patient) {
+	        Patient existing = patientservice.getPatientById(patient.getId());
+	        if (existing != null) {
+	            Patient updatedpatient = patientservice.updatePatient(patient);
+	            return new ResponseEntity<>(updatedpatient, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>("Cannot update. Patient " + patient.getId() + " not found.", HttpStatus.NOT_FOUND);
+	        }
+	    }
+
+	    @DeleteMapping("/delete/{id}")
+	    public ResponseEntity<String> deletePatient(@PathVariable int id) {
+	        Student existing = studentService.getStudentById(id);
+	        if (existing != null) {
+	            studentService.deleteStudentById(id);
+	            return new ResponseEntity<>("Student with ID " + id + " deleted successfully.", HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>("Cannot delete. Student with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+	        }
+	    }
+	
+
+}

@@ -1,0 +1,49 @@
+package com.klef.springboot.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.klef.springboot.model.Patient;
+
+@Service
+public class PatientServiceImpl implements PatientService
+{
+	@Autowired
+	
+
+	@Override
+	public Patient addPatient(Patient patient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Patient> getAllPatients() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Patient getPatientById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Patient updatePatient(Patient patient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deletePatientById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+{
+
+}

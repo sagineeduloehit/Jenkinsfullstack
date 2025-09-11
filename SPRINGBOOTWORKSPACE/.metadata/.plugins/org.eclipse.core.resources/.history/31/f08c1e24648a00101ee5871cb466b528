@@ -1,0 +1,15 @@
+package com.klef.springboot.service;
+
+import java.util.List;
+
+import com.klef.springboot.model.Patient;
+
+public interface PatientService
+{
+	   Patient addpatient(Patient patient);
+	    List<Patient> getAll();
+	    Student getStudentById(int id);
+	    Student updateStudent(Student student);
+	    void deleteStudentById(int id);
+
+}

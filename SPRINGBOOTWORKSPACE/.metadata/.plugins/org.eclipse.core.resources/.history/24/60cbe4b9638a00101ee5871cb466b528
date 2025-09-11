@@ -1,0 +1,6 @@
+package com.klef.springboot.repository;
+
+@rep
+public interface PatientRepository {
+
+}

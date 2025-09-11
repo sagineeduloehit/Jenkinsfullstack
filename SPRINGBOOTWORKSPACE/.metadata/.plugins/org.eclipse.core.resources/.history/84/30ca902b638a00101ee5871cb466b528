@@ -1,0 +1,6 @@
+package com.klef.springboot.model;
+
+public class Patient 
+{
+
+}
