@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     stages {
-
         // ===== FRONTEND BUILD =====
         stage('Build Frontend') {
             steps {
-                dir('frontendapp') {
+                dir('frontendworkspace/frontendapp') {
                     bat 'npm install'
                     bat 'npm run build'
                 }
@@ -21,7 +20,7 @@ pipeline {
                     rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
                 )
                 mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
-                xcopy /E /I /Y frontendapp\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
+                xcopy /E /I /Y frontendworkspace\\frontendapp\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
                 '''
             }
         }
@@ -49,7 +48,6 @@ pipeline {
                 '''
             }
         }
-
     }
 
     post {
