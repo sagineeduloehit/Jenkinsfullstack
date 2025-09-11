@@ -5,7 +5,7 @@ pipeline {
         // ===== FRONTEND BUILD =====
         stage('Build Frontend') {
             steps {
-                dir('frontendworkspace/frontendapp') {
+                dir('FRONTENDWORKSPACE/frontendapp') {
                     bat 'npm install'
                     bat 'npm run build'
                 }
@@ -20,7 +20,7 @@ pipeline {
                     rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
                 )
                 mkdir "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
-                xcopy /E /I /Y frontendworkspace\\frontendapp\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
+                xcopy /E /I /Y FRONTENDWORKSPACE\\frontendapp\\dist\\* "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\frontendapi"
                 '''
             }
         }
