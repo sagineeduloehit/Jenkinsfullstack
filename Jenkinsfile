@@ -28,7 +28,7 @@ pipeline {
         // ===== BACKEND BUILD =====
         stage('Build Backend') {
             steps {
-                dir('PatientSpringBootProject') {
+                dir('SPRINGBOOTWORKSPACE/PatientSpringBootProject') {
                     bat 'mvn clean package'
                 }
             }
@@ -44,7 +44,7 @@ pipeline {
                 if exist "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\mybackendproject" (
                     rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\mybackendproject"
                 )
-                copy "PatientSpringBootProject\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\"
+                copy "SPRINGBOOTWORKSPACE\\PatientSpringBootProject\\target\\*.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\"
                 '''
             }
         }
